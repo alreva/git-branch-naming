@@ -7,7 +7,7 @@
   "linkerEnabled": true,
   "resources": {
     "assembly": {
-      "git-branch-naming.dll": "sha256-3eJSDPGlZg5EUPA7LKN9Hg12q0Nhh3ZxIrBTblXmAPU=",
+      "git-branch-naming.dll": "sha256-UrxClXhKZfPpz7g\/ZRN7u75MtZ8cRxr6b3wmKlP9ymY=",
       "Microsoft.AspNetCore.Components.dll": "sha256-MR4JD87XgdWAu30bNTiyUXaxw6MmP7Zt2MBJsgyZH\/Q=",
       "Microsoft.AspNetCore.Components.Forms.dll": "sha256-IgZ9ruC3OdZxWws3iUfQd0TT5lTLWlLE80hECXTZoAI=",
       "Microsoft.AspNetCore.Components.Web.dll": "sha256-BKBoiWh0qCoTb3DVeDHLfVa6agKKsneDCAoolLHn5b8=",
