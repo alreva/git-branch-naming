@@ -17,8 +17,8 @@ jobs:
         with:
           dotnet-version: '6.0.x'
       - name: Publish .NET Core Project
-        run: dotnet publish -c Release -o release --nologo
-      - name: Change base-tag in index.html from / to BlazorGitHubPagesDemo
+        run: dotnet publish git-branch-naming.csproj -c Release -o release --nologo
+      - name: Change base-tag in index.html from / to git-branch-naming
         run: sed -i 's/<base href="\/" \/>/<base href="\/git-branch-naming\/" \/>/g' release/wwwroot/index.html
       - name: Add .nojekyll file
         run: touch release/wwwroot/.nojekyll
