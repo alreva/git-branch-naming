@@ -1,9 +1,42 @@
 ﻿@page "/"
+@using System.Text
+@inject IJSRuntime JsRuntime
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Home | Git Branch Naming</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Git Branch Naming</h1>
 
-Welcome to your new app.
+<EditForm Model="@_branchDetails">
+    <div class="form-group row">
+        <label for="WorkItemDetails" class="col-sm-2 col-form-label">
+                    Work Item Details
+        </label>
+        <div col-sm-10>
+            <InputText id="WorkItemDetails" @bind-Value="@_branchDetails.WorkItemDetails" class="form-control" placeholder="Paste the work item details here" />
+        </div>
+    </div>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+    <button type="submit" class="btn btn-success">OK</button>
+    
+    <div class="form-group row">
+        <label for="BranchName" class="col-sm-2 col-form-label">
+            Branch Name
+        </label>
+        <div col-sm-10>
+            <InputText readonly="readonly" id="BranchName" @bind-Value="@_branchDetails.BranchName" class="form-control" />
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-secondary" @onclick="CopyTextToClipboard">Copy</button>
+
+</EditForm>
+
+<SuggestionsBox Title="How is this tool working for you?"/>
+
+@code {
+    private readonly BranchDetails _branchDetails = new BranchDetails();
+    private async Task CopyTextToClipboard()
+    {
+        await JsRuntime.InvokeVoidAsync("clipboardCopy.copyText", _branchDetails.BranchName);
+    }
+}

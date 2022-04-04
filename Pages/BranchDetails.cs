@@ -1,4 +1,6 @@
-﻿public class BranchDetails
+﻿using System.Text;
+
+public class BranchDetails
 {
     private string _workItemDetails = "";
 
