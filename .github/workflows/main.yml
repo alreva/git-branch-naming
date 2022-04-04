@@ -1,0 +1,30 @@
+# pipeline
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  deploy-to-github-pages:
+    # use ubuntu-latest image to run steps on
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.0.x'
+      - name: Publish .NET Core Project
+        run: dotnet publish -c Release -o release --nologo
+      - name: Change base-tag in index.html from / to BlazorGitHubPagesDemo
+        run: sed -i 's/<base href="\/" \/>/<base href="\/git-branch-naming\/" \/>/g' release/wwwroot/index.html
+      - name: Add .nojekyll file
+        run: touch release/wwwroot/.nojekyll
+      - name: Commit wwwroot to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: release/wwwroot
